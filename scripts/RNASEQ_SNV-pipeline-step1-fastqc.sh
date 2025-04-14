@@ -6,7 +6,7 @@ set -o errexit
 AD=`pwd`
 
 # Load modules 
-module load fastqc/0.11.5
+module load fastqc/0.12.1:wq
 
 # Get parameters
 PARFILE=$1
