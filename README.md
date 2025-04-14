@@ -19,7 +19,7 @@ run_RNASEQ_SNV_workflow.sh
 
 ### To run the pipeline manually, one step at a time:
 
-Set CONFIG_FILE variable to the name of the name of the config file
+Set CONFIG_FILE variable to the name of the config file
 ```
 CONFIG_FILE=config.txt
 ``` 
