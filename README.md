@@ -19,6 +19,11 @@ run_RNASEQ_SNV_workflow.sh
 
 ### To run the pipeline manually, one step at a time:
 
+Set CONFIG_FILE variable to the name of the name of the config file
+```
+CONFIG_FILE=config.txt
+``` 
+
 #### 1) FASTQC
 ```
 swarm --logdir ./00-swarm-log --job-name step1-fastqc  -f ./scripts/RNASEQ_SNV-pipeline-step1-fastqc.swarm
