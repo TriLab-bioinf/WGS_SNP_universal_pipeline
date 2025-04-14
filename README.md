@@ -21,7 +21,7 @@ run_RNASEQ_SNV_workflow.sh
 
 Set CONFIG_FILE variable to the name of the config file
 ```
-CONFIG_FILE=config.txt
+export CONFIG_FILE=config.txt
 ``` 
 
 #### 1) FASTQC
