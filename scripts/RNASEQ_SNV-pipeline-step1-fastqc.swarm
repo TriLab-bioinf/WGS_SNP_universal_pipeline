@@ -1,0 +1,4 @@
+#SWARM --time 4:00:00
+
+sh ./scripts/RNASEQ_SNV-pipeline-step1-fastqc.sh ${CONFIG_FILE}
+

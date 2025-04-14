@@ -1,0 +1,53 @@
+##############################################################
+# Parameters for SNP identification pipeline for RNAseq data #
+##############################################################
+
+# Expected format for fastq file name: 
+# ${SAMPLE}_R1_001.fastq.gz 
+# ${SAMPLE}_R2_001.fastq.gz
+
+# Input files with path to each fastq file for forward and reverse reads
+
+INPUTFILE_1=/data/COVID19-RNAseq/2way_test/WGS_script_HERNAN/input-1.txt_orig
+INPUTFILE_2=/data/COVID19-RNAseq/2way_test/WGS_script_HERNAN/input-2.txt_orig
+
+# STAR genome directory
+STAR_DB=/vf/users/COVID19-RNAseq/2way_test/hg19
+
+# GATK resource bundle (it has to use the exact genome assembly version as the STAR database used for mapping
+GENOME=/fdb/GATK_resource_bundle/hg19/ucsc.hg19.fasta
+KNOWN_SNP_SITES=/fdb/GATK_resource_bundle/hg19/dbsnp_138.hg19.vcf.gz
+
+# Control what STEPs should be run (set to true). Processes can only be stopped (set to false) from the bottom up.
+# E.g. by setting STEP4=false the pipeline will run only STEP1-3 processes.
+# To speed up the workflow, it is recommended to run several instances of the pipeline, each on a subset of samples 
+# with STEP8 and STEP9 set to false and then run the last two steps individually on all samples. In this case, you should use different
+# configuration files for each run pointing at different input files and using a different directory name for saving log files (see LOG_DIR below)
+
+STEP1=true
+STEP2=true
+STEP3=true
+STEP4=true
+STEP5=true
+STEP6=true
+STEP7=true
+STEP8=true
+STEP9=true
+
+# Workflow log files
+LOG_DIR=00-workflow-log
+
+STEP1_LOG=RNASEQ_SNV-pipeline-step1-fastqc.log
+STEP2_LOG=RNASEQ_SNV-pipeline-step2-mapping.log
+STEP3_LOG=RNASEQ_SNV-pipeline-step3-split.log
+STEP4_LOG=RNASEQ_SNV-pipeline-step4-cleanBAM.log
+STEP5_LOG=RNASEQ_SNV-pipeline-step5-markDuplicates
+STEP6_LOG=RNASEQ_SNV-pipeline-step6-recalibration-all.log
+STEP7_LOG=RNASEQ_SNV-pipeline-step7-split-recalibrated.log
+STEP8_LOG=RNASEQ_SNV-pipeline-step8-variantCalling.log
+STEP9_LOG=RNASEQ_SNV-pipeline-step9-filterVariants.log
+
+
+
+
+

@@ -1,0 +1,3 @@
+#SWARM  -t 20 -g 80 --time 10:00:00
+
+sh ./scripts/RNASEQ_SNV-pipeline-step4-cleanBAM.sh ${CONFIG_FILE}
