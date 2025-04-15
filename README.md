@@ -22,6 +22,9 @@ run_RNASEQ_SNV_workflow.sh
 Set CONFIG_FILE variable to the name of the config file
 ```
 export CONFIG_FILE=config.txt
+
+for i in $(grep '=' config.txt |grep -v '#'); do export $i; done
+
 ``` 
 
 #### 1) FASTQC

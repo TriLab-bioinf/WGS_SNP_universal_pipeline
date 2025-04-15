@@ -62,7 +62,7 @@ do
 
 	java -Xmx60g -XX:ParallelGCThreads=20 -jar $PICARDJARPATH/picard.jar MarkDuplicates \
 	INPUT=${INPUT_BAM} OUTPUT=${OUTPUT_BAM} \
-	METRICS_FILE=metrics-${SAMPLE}.txt
+	METRICS_FILE=${OUTPUT_DIR}/metrics-${SAMPLE}.txt
 
 	echo "CREATE BAM INDEX ..."
 	java -Xmx60g -jar $PICARDJARPATH/picard.jar BuildBamIndex INPUT=${OUTPUT_BAM}

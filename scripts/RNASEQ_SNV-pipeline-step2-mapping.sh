@@ -6,7 +6,7 @@ set -o errexit
 AD=`pwd`
 
 # load modules 
-module load bbtools/37.36
+module load bbtools/39.06 
 module load STAR/2.7.10b
 module load GATK/4.3.0.0
 module load samtools/1.17 
@@ -68,8 +68,8 @@ do
 	bbtools bbduk in=${fastq1} in2=${fastq2} \
 		out1=${CLEAN_FASTQ1} out2=${CLEAN_FASTQ2} \
 		trimq=10 maq=10 t=${NT} overwrite=t \
-		bhist=${SAMPLE}.bhist qhist=${SAMPLE}.qhist \
-		lhist=${SAMPLE}.lhist
+		bhist=${OUTPUT_DIR}/${SAMPLE}.bhist qhist=${OUTPUT_DIR}/${SAMPLE}.qhist \
+		lhist=${OUTPUT_DIR}/${SAMPLE}.lhist
 
 
 	# Print footnote

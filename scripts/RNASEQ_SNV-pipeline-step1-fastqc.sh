@@ -10,8 +10,16 @@ module load fastqc/0.12.1
 
 # Get parameters
 PARFILE=$1
+echo $PARFILE
 source ./$PARFILE
+
+mkdir -p ${LOG_DIR} 
 LOGFILE=${LOG_DIR}/${STEP1_LOG}
+
+echo INPUTFILE_1 = $INPUTFILE_1
+echo INPUTFILE_2 = $INPUTFILE_2
+
+
 
 # run samples
 while IFS= read -r fastq1 && IFS= read -r fastq2 <&3;
@@ -19,7 +27,7 @@ do
 
 
 	# Prepare filenames file 1
-	FASTQGZ_1=`basename ${fastq1}`
+    FASTQGZ_1=$(basename ${fastq1})
 	FASTQ_1=${FASTQGZ_1%.*}
 	SAMPLE_1=${FASTQ_1%.*}
 

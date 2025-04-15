@@ -8,8 +8,10 @@
 
 # Input files with path to each fastq file for forward and reverse reads
 
-INPUTFILE_1=/data/COVID19-RNAseq/2way_test/WGS_script_HERNAN/input-1.txt_orig
-INPUTFILE_2=/data/COVID19-RNAseq/2way_test/WGS_script_HERNAN/input-2.txt_orig
+INPUTFILE_1=/home/lorenziha/data/COVID19-RNAseq/2way_test/WGS_script_HERNAN/FINAL_RNASEQ_SNP_WORKFLOW/input_1.txt
+#/data/COVID19-RNAseq/2way_test/WGS_script_HERNAN/00-raw/test/test_R1_001.fastq.gz 
+INPUTFILE_2=/home/lorenziha/data/COVID19-RNAseq/2way_test/WGS_script_HERNAN/FINAL_RNASEQ_SNP_WORKFLOW/input_2.txt
+#/data/COVID19-RNAseq/2way_test/WGS_script_HERNAN/00-raw/test/test_R2_001.fastq.gz
 
 # STAR genome directory
 STAR_DB=/vf/users/COVID19-RNAseq/2way_test/hg19

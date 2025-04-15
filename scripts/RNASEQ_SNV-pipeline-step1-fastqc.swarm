@@ -1,4 +1,4 @@
-#SWARM --time 4:00:00
+#SWARM --time 4:00:00 --partition=quick
 
 sh ./scripts/RNASEQ_SNV-pipeline-step1-fastqc.sh ${CONFIG_FILE}
 
