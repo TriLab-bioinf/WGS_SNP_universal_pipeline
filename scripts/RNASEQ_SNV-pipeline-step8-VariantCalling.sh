@@ -95,13 +95,31 @@ done < $INPUTFILE_1 3<$INPUTFILE_2 > $LOGFILE 2>&1
 ###    Call Variants within chromosomes across all samples    ###
 #################################################################
 
-OUTPUT_VCF=08-variant-calling/all_samples-${CHR}.vcf
+# STEP-1 Combine GVCFs into a single VCF file
+
+OUTPUT_COMBINED_VCF=08-variant-calling/all_samples-${CHR}.g.vcf
+
+gatk CombineGVCFs \
+    -R ${GENOME} \
+    ${MY_SAMPLES[@]} \
+    -O ${OUTPUT_COMBINED_VCF}
+
+echo ""
+echo "#################################"
+echo "# Finished merging VCF files"
+echo "#################################"
+echo ""
+
+# STEP-2 Call Variants within chromosomes across all samples
+
+
+OUTPUT_GenotypeGVCFs=08-variant-calling/all_samples-${CHR}.vcf
 
 gatk --java-options "-Xms2G -Xmx2G -XX:ParallelGCThreads=2" GenotypeGVCFs \
      -R ${GENOME} \
-     ${MY_SAMPLES[@]} \
-     -O ${OUTPUT_VCF} \
+     --variantv ${OUTPUT_COMBINED_VCF} \
 	 --standard-min-confidence-threshold-for-calling 20
+     -O ${OUTPUT_GenotypeGVCFs}   
 
 # Print footnote
 TIMESTAMP=`date "+%Y-%m-%d %H:%M:%S"`
