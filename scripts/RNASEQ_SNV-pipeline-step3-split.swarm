@@ -1,3 +1,0 @@
-#SWARM -t 16 -g 32 --time 15:00:00 
-
-sh ./scripts/RNASEQ_SNV-pipeline-step3-split.sh ${CONFIG_FILE}

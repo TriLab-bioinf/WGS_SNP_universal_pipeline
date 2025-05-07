@@ -1,3 +1,0 @@
-#SWARM  -t 10 -g 35 --time 48:00:00
-
-sh ./scripts/RNASEQ_SNV-pipeline-step6-recalibration.sh ${CONFIG_FILE}

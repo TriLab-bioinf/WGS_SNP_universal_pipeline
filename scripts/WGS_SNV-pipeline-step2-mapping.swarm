@@ -1,0 +1,4 @@
+#SWARM -t 30 -g 60 --time 60:00:00
+
+sh ./scripts/WGS_SNV-pipeline-step2-mapping.sh ${CONFIG_FILE}
+

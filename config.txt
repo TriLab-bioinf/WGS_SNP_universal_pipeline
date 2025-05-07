@@ -1,23 +1,22 @@
 ##############################################################
-# Parameters for SNP identification pipeline for RNAseq data #
+# Parameters for SNP identification pipeline for WGS data    #
 ##############################################################
 
 # Expected format for fastq file name: 
 # ${SAMPLE}_R1_001.fastq.gz 
 # ${SAMPLE}_R2_001.fastq.gz
 
-# Input files with path to each fastq file for forward and reverse reads
+# Input files with full path to each fastq file for forward and reverse reads
 
-INPUTFILE_1=/home/lorenziha/data/COVID19-RNAseq/2way_test/WGS_script_HERNAN/FINAL_RNASEQ_SNP_WORKFLOW/input_1.txt
-#/data/COVID19-RNAseq/2way_test/WGS_script_HERNAN/00-raw/test/test_R1_001.fastq.gz 
-INPUTFILE_2=/home/lorenziha/data/COVID19-RNAseq/2way_test/WGS_script_HERNAN/FINAL_RNASEQ_SNP_WORKFLOW/input_2.txt
-#/data/COVID19-RNAseq/2way_test/WGS_script_HERNAN/00-raw/test/test_R2_001.fastq.gz
+INPUTFILE_1=/home/lorenziha/data/COVID19-RNAseq/2way_test/WGS_script_HERNAN/FINAL_WGS_SNP_WORKFLOW/input_1.txt
+INPUTFILE_2=/home/lorenziha/data/COVID19-RNAseq/2way_test/WGS_script_HERNAN/FINAL_WGS_SNP_WORKFLOW/input_2.txt
 
-# STAR genome directory
-STAR_DB=/vf/users/COVID19-RNAseq/2way_test/hg19
+# BWA-MEM2 db prefix for reference genome, with path included if not in working directory
+BWA_DB=/fdb/igenomes/Mus_musculus/UCSC/mm10/Sequence/BWAIndex/genome.fa
 
-# GATK resource bundle (it has to use the exact genome assembly version as the STAR database used for mapping
-GENOME=/fdb/GATK_resource_bundle/hg19/ucsc.hg19.fasta
+# GATK resource bundle (it has to use the exact genome assembly version as the BWA database used for mapping
+GENOME=/fdb/igenomes/Mus_musculus/UCSC/mm10/Sequence/BWAIndex/genome.fa
+# KNOWN_SNP_SITES NOT CURRENTLY USED IN THE UNIVERSAL PIPELINE
 KNOWN_SNP_SITES=/fdb/GATK_resource_bundle/hg19/dbsnp_138.hg19.vcf.gz
 
 # Control what STEPs should be run (set to true). Processes can only be stopped (set to false) from the bottom up.
@@ -39,15 +38,15 @@ STEP9=true
 # Workflow log files
 LOG_DIR=00-workflow-log
 
-STEP1_LOG=RNASEQ_SNV-pipeline-step1-fastqc.log
-STEP2_LOG=RNASEQ_SNV-pipeline-step2-mapping.log
-STEP3_LOG=RNASEQ_SNV-pipeline-step3-split.log
-STEP4_LOG=RNASEQ_SNV-pipeline-step4-cleanBAM.log
-STEP5_LOG=RNASEQ_SNV-pipeline-step5-markDuplicates
-STEP6_LOG=RNASEQ_SNV-pipeline-step6-recalibration-all.log
-STEP7_LOG=RNASEQ_SNV-pipeline-step7-split-recalibrated.log
-STEP8_LOG=RNASEQ_SNV-pipeline-step8-variantCalling.log
-STEP9_LOG=RNASEQ_SNV-pipeline-step9-filterVariants.log
+STEP1_LOG=WGS_SNV-pipeline-step1-fastqc.log
+STEP2_LOG=WGS_SNV-pipeline-step2-mapping.log
+STEP3_LOG=WGS_SNV-pipeline-step3-split.log
+STEP4_LOG=WGS_SNV-pipeline-step4-cleanBAM.log
+STEP5_LOG=WGS_SNV-pipeline-step5-markDuplicates
+STEP6_LOG=WGS_SNV-pipeline-step6-recalibration-all.log
+STEP7_LOG=WGS_SNV-pipeline-step7-split-recalibrated.log
+STEP8_LOG=WGS_SNV-pipeline-step8-variantCalling.log
+STEP9_LOG=WGS_SNV-pipeline-step9-filterVariants.log
 
 
 

@@ -7,7 +7,7 @@ AD=`pwd`
 
 # load modules 
 module load bbtools/39.06 
-module load STAR/2.7.10b
+module load bwa-mem2/2.2.1 
 module load GATK/4.3.0.0
 module load samtools/1.17 
 
@@ -94,37 +94,26 @@ do
 	INPUT_DIR=02-trimming/${SAMPLE}
 
 	echo ""
-	echo " Mapping reads with STAR ..."
+	echo " Mapping reads with BWA MEM2 ..."
 	echo ""
 
-	STAR \
-		--genomeDir ${STAR_DB} \
-		--sjdbOverhang 150 \
-		--readFilesIn  ${CLEAN_FASTQ1} ${CLEAN_FASTQ2}\
-		--outSAMtype BAM SortedByCoordinate \
-		--outFilterMultimapNmax 20 \
-		--runThreadN 30 \
-		--readFilesCommand zcat \
-		--outFileNamePrefix ${MAP_OUTPUT_DIR}/raw-sorted-${SAMPLE}.  \
-		--twopassMode Basic \
-		--limitOutSJcollapsed 1000000 \
-		--limitBAMsortRAM 30000000000 
-		#-–outSAMattrRGline ID:${SAMPLE} SM:${SAMPLE} PL:ILLUMINA \
-		#--outReadsUnmapped Fastx \
+    RAW_OUTPUT_BAM=${MAP_OUTPUT_DIR}/raw-sorted-${SAMPLE}.out.bam
 
-	# gatk MergeBamAlignment \
-	# --REFERENCE_SEQUENCE /fdb/GATK_resource_bundle/hg19/ucsc.hg19.fasta \
-	# --UNMAPPED_BAM ${unaligned_bam} \
-	# --ALIGNED_BAM ${star_bam} \
-	# --OUTPUT ${base_name}.bam \
-	# --INCLUDE_SECONDARY_ALIGNMENTS false \
-	# --VALIDATION_STRINGENCY SILEN
+    bwa-mem2 mem \
+        -t 30 \
+        ${BWA_DB} ${CLEAN_FASTQ1} ${CLEAN_FASTQ2} | \
+        samtools view -hb - | \
+        samtools sort -@ 16 \
+            -O BAM -T ${SAMPLE}.tmp \
+            -o ${RAW_OUTPUT_BAM} - > {log.logfile} 2>&1
+
+        samtools index -@ 8 ${OUTPUT_BAM}   
 
 	echo ""
 	echo "Spllitting N cigars ..."
 	echo ""
 	
-	INPUT_BAM=${MAP_OUTPUT_DIR}/raw-sorted-${SAMPLE}.Aligned.sortedByCoord.out.bam
+	INPUT_BAM=${RAW_OUTPUT_BAM}
 	OUTPUT_BAM=${MAP_OUTPUT_DIR}/sorted-${SAMPLE}.bam
 
 	gatk SplitNCigarReads \
@@ -133,9 +122,9 @@ do
 		-O ${OUTPUT_BAM} \
 		--process-secondary-alignments true
 
-	rm -f ${MAP_OUTPUT_DIR}/raw-sorted-${SAMPLE}.bam
+	rm -f ${RAW_OUTPUT_BAM}
 
-	samtools index ${MAP_OUTPUT_DIR}/sorted-${SAMPLE}.bam
+	samtools index ${OUTPUT_BAM}
 
 	# Print footnote
 	TIMESTAMP=`date "+%Y-%m-%d %H:%M:%S"`
