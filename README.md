@@ -14,7 +14,7 @@ sinteractive
 
 ### To run the pipeline automaticaly
 ```
-run_RNASEQ_SNV_workflow.sh
+run_WGS_SNV_workflow.sh
 ```
 
 ### To run the pipeline manually, one step at a time:
@@ -29,47 +29,47 @@ for i in $(grep '=' config.txt |grep -v '#'); do export $i; done
 
 #### 1) FASTQC
 ```
-swarm --logdir ./00-swarm-log --job-name step1-fastqc  -f ./scripts/RNASEQ_SNV-pipeline-step1-fastqc.swarm
+swarm --logdir ./00-swarm-log --job-name step1-fastqc  -f ./scripts/WGS_SNV-pipeline-step1-fastqc.swarm
 ```
 
 #### 2) TRIMMING and MAPPING
 ```
-swarm --logdir ./00-swarm-log --job-name step2-mapping -f ./scripts/RNASEQ_SNV-pipeline-step2-mapping.swarm
+swarm --logdir ./00-swarm-log --job-name step2-mapping -f ./scripts/WGS_SNV-pipeline-step2-mapping.swarm
 ```
 
 #### 3) SPLIT CHR
 ```
-swarm --logdir ./00-swarm-log --job-name step3-split -f ./scripts/RNASEQ_SNV-pipeline-step3-split.swarm
+swarm --logdir ./00-swarm-log --job-name step3-split -f ./scripts/WGS_SNV-pipeline-step3-split.swarm
 ```
 
 #### 4) DELETE DISCORDANT READS
 ```
-swarm --logdir ./00-swarm-log --job-name step4-cleanBAM -f ./scripts/RNASEQ_SNV-pipeline-step4-cleanBAM.swarm
+swarm --logdir ./00-swarm-log --job-name step4-cleanBAM -f ./scripts/WGS_SNV-pipeline-step4-cleanBAM.swarm
 ```
 
 #### 5) MARK DUPLICATES
 ```
-swarm --logdir ./00-swarm-log --job-name step5-MarkDuplicates -f ./scripts/RNASEQ_SNV-pipeline-step5-MarkDuplicates.swarm
+swarm --logdir ./00-swarm-log --job-name step5-MarkDuplicates -f ./scripts/WGS_SNV-pipeline-step5-MarkDuplicates.swarm
 ```
 
 #### 6) BASE RECALIBRATION
 ```
-swarm --logdir ./00-swarm-log --job-name step6-recalibration -f ./scripts/RNASEQ_SNV-pipeline-step6-recalibration.swarm
+swarm --logdir ./00-swarm-log --job-name step6-recalibration -f ./scripts/WGS_SNV-pipeline-step6-recalibration.swarm
 ```
 
 #### 7) SPLIT RECALIBRATED BAM FILES
 ```
-swarm --logdir ./00-swarm-log --job-name step7-split -f ./scripts/RNASEQ_SNV-pipeline-step7-split.swarm
+swarm --logdir ./00-swarm-log --job-name step7-split -f ./scripts/WGS_SNV-pipeline-step7-split.swarm
 ```
 
 #### 8) VARIANT CALLING
 ```
-swarm --logdir ./00-swarm-log --job-name step8-VariantCalling -f ./scripts/RNASEQ_SNV-pipeline-step8-VariantCalling.swarm
+swarm --logdir ./00-swarm-log --job-name step8-VariantCalling -f ./scripts/WGS_SNV-pipeline-step8-VariantCalling.swarm
 ```
 
 #### 9) Merge GTF files
 ```
-swarm --logdir ./00-swarm-log --job-name step9-filterVariants -f ./scripts/RNASEQ_SNV-pipeline-step9-filterVariants.swarm
+swarm --logdir ./00-swarm-log --job-name step9-filterVariants -f ./scripts/WGS_SNV-pipeline-step9-filterVariants.swarm
 ```
 
 
