@@ -1,0 +1,2 @@
+/path/to/fastq/files/sample1_R2_001.fastq.gz
+/path/to/fastq/files/sample2_R2_001.fastq.gz
