@@ -1,4 +1,7 @@
-## Hennighausen_TK_185
+## WGS_SNP_universal_pipeline
+Universal SNP and small InDel identification pipeline based on Germline GATK's best practices (non-human)
+
+_NOTE: Currently the pipeline assigns a standard @RG line to the bam file, which may affect HaplotypeCaller algorithm. In the future this should be upgraded to assign automatically Library, Lane, Sample and Sequencing info, likely from a metadata table, so HaplotypeCaller takes into account these covariates._     
 
 ### BEFORE RUNNING
 
