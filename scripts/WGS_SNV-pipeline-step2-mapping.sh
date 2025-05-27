@@ -7,7 +7,7 @@ AD=`pwd`
 
 # load modules 
 module load bbtools/39.06 
-module load bwa-mem2/2.2.1 
+module load bwa/0.7.17 
 module load GATK/4.3.0.0
 module load samtools/1.17 
 
@@ -99,7 +99,7 @@ do
 
     RAW_OUTPUT_BAM=${MAP_OUTPUT_DIR}/raw-sorted-${SAMPLE}.out.bam
 
-    bwa-mem2 mem \
+    bwa mem \
         -t 30 \
         ${BWA_DB} ${CLEAN_FASTQ1} ${CLEAN_FASTQ2} | \
         samtools view -hb - | \
