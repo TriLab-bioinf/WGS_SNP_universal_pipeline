@@ -21,7 +21,7 @@ fi
 
 # Check input files from config are OK
 if [[ ! -e ${INPUTFILE_1} || ! -e ${INPUTFILE_2} ]]; then echo INPUT file with read file paths missing!!; echo ""; exit; fi
-if [[ ! -e ${STAR_DB}/SA ]]; then echo STARdb missing!!; echo ""; exit; fi
+if [[ ! -e ${BWA_DB}.sa ]]; then echo BWA MEM2 db missing!!; echo ""; exit; fi
 if [[ ! -e ${GENOME} ]]; then echo Genome file missing!!; echo ""; exit; fi
 if [[ ! -e ${KNOWN_SNP_SITES} ]]; then echo Known SNP sites file missing!!; echo ""; exit; fi
 
