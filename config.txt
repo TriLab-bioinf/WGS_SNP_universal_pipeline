@@ -8,16 +8,16 @@
 
 # Input files with full path to each fastq file for forward and reverse reads
 
-INPUTFILE_1=/home/lorenziha/data/COVID19-RNAseq/2way_test/WGS_script_HERNAN/FINAL_WGS_SNP_WORKFLOW/input_1.txt
-INPUTFILE_2=/home/lorenziha/data/COVID19-RNAseq/2way_test/WGS_script_HERNAN/FINAL_WGS_SNP_WORKFLOW/input_2.txt
+INPUTFILE_1=/data/lorenziha/JAKUB_JANKOWSKI/WGS_universal_SNP_pipeline/input_1.txt
+INPUTFILE_2=/data/lorenziha/JAKUB_JANKOWSKI/WGS_universal_SNP_pipeline/input_2.txt
 
-# BWA-MEM2 db prefix for reference genome, with path included if not in working directory
+# BWA-MEM db prefix for reference genome, with path included if not in working directory
 BWA_DB=/fdb/igenomes/Mus_musculus/UCSC/mm10/Sequence/BWAIndex/genome.fa
 
 # GATK resource bundle (it has to use the exact genome assembly version as the BWA database used for mapping
-GENOME=/fdb/igenomes/Mus_musculus/UCSC/mm10/Sequence/BWAIndex/genome.fa
+GENOME=/fdb/igenomes/Mus_musculus/UCSC/mm10/Sequence/WholeGenomeFasta/genome.fa
 # KNOWN_SNP_SITES NOT CURRENTLY USED IN THE UNIVERSAL PIPELINE
-KNOWN_SNP_SITES=/fdb/GATK_resource_bundle/hg19/dbsnp_138.hg19.vcf.gz
+KNOWN_SNP_SITES=/fdb/GATK_resource_bundle/mm10/dbsnp146_fixedNames.vcf.gz
 
 # Control what STEPs should be run (set to true). Processes can only be stopped (set to false) from the bottom up.
 # E.g. by setting STEP4=false the pipeline will run only STEP1-3 processes.

@@ -102,12 +102,12 @@ do
     bwa mem \
         -t 30 \
         ${BWA_DB} ${CLEAN_FASTQ1} ${CLEAN_FASTQ2} | \
-        samtools view -hb - | \
+        samtools view -h -b - | \
         samtools sort -@ 16 \
             -O BAM -T ${SAMPLE}.tmp \
-            -o ${RAW_OUTPUT_BAM} - > {log.logfile} 2>&1
+            -o ${RAW_OUTPUT_BAM} - 
 
-        samtools index -@ 8 ${OUTPUT_BAM}   
+        samtools index -@ 8 ${RAW_OUTPUT_BAM}   
 
 	echo ""
 	echo "Spllitting N cigars ..."
