@@ -117,8 +117,8 @@ OUTPUT_GenotypeGVCFs=08-variant-calling/all_samples-${CHR}.vcf
 
 gatk --java-options "-Xms2G -Xmx2G -XX:ParallelGCThreads=2" GenotypeGVCFs \
      -R ${GENOME} \
-     --variantv ${OUTPUT_COMBINED_VCF} \
-	 --standard-min-confidence-threshold-for-calling 20
+     --variant ${OUTPUT_COMBINED_VCF} \
+	 --standard-min-confidence-threshold-for-calling 20 \
      -O ${OUTPUT_GenotypeGVCFs}   
 
 # Print footnote
