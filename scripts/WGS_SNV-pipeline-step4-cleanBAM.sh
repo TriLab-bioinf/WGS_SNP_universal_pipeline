@@ -57,7 +57,7 @@ do
 	echo ""
 
 	# Iterate through chromosomes
-	for counter in M {1..22} X Y; do
+	for counter in {10..19} {1..9} M X Y; do
 		
 
 		CHR=chr${counter}

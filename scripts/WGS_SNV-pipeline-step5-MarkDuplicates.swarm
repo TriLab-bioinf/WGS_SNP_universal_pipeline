@@ -38,12 +38,6 @@ sh ./scripts/WGS_SNV-pipeline-step5-MarkDuplicates.sh ${CONFIG_FILE} chr18
 
 sh ./scripts/WGS_SNV-pipeline-step5-MarkDuplicates.sh ${CONFIG_FILE} chr19 
 
-sh ./scripts/WGS_SNV-pipeline-step5-MarkDuplicates.sh ${CONFIG_FILE} chr20 
-
-sh ./scripts/WGS_SNV-pipeline-step5-MarkDuplicates.sh ${CONFIG_FILE} chr21 
-
-sh ./scripts/WGS_SNV-pipeline-step5-MarkDuplicates.sh ${CONFIG_FILE} chr22 
-
 sh ./scripts/WGS_SNV-pipeline-step5-MarkDuplicates.sh ${CONFIG_FILE} chrX 
 
 sh ./scripts/WGS_SNV-pipeline-step5-MarkDuplicates.sh ${CONFIG_FILE} chrY 

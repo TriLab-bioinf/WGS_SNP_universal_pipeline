@@ -25,12 +25,13 @@ fi
 
 # Merge all per-chr VCF files into a single VCF
 PER_CHR_VCF=()
-for i in M {1..22} X Y; do 
+for i in {10..19} {1..9} M X Y; do 
 	PER_CHR_VCF+="-I ${INPUT_DIR}/all_samples-chr${i}.vcf "
 done	
 
 echo ""
 echo Merging vcf files ...
+echo ${PER_CHR_VCF} 
 echo ""
 
 MERGED_VCF=${INPUT_DIR}/all_samples.vcf
@@ -42,13 +43,13 @@ MERGED_INDEL_VCF=${INPUT_DIR}/all_samples-INDEL.vcf
 
 # Subset to SNPs-only callset with SelectVariants
 echo ""
-echo Subseting SNPs from merged vcf file ...
+echo Subseting SNPs from merged vcf file ${MERGED_VCF} ...
 echo ""
 
 gatk SelectVariants \
     -V ${MERGED_VCF} \
     -select-type SNP \
-    -O ${MERGED_SNP_VCF}  > ${LOGFILE} 2>&1
+    -O ${MERGED_SNP_VCF}  >> ${LOGFILE} 2>&1
 
 # Subset to indels-only callset with SelectVariants
 echo ""
@@ -58,7 +59,7 @@ echo ""
 gatk SelectVariants \
     -V ${MERGED_VCF} \
     -select-type INDEL \
-    -O ${MERGED_INDEL_VCF}  > ${LOGFILE} 2>&1
+    -O ${MERGED_INDEL_VCF} >> ${LOGFILE} 2>&1
 
 # Number of threads
 NT=${SLURM_CPUS_PER_TASK}
@@ -97,7 +98,7 @@ gatk --java-options "-Xms4G -Xmx4G -XX:ParallelGCThreads=2" VariantFiltration \
     -filter "MQ < 40.0" --filter-name "MQ40" \
     -filter "MQRankSum < -12.5" --filter-name "MQRankSum-12.5" \
     -filter "ReadPosRankSum < -8.0" --filter-name "ReadPosRankSum-8" \
-    -O ${FILTERED_SNP_VCF}
+    -O ${FILTERED_SNP_VCF} >> ${LOGFILE} 2>&1
 
 echo ""
 echo "FILTERING INDEL VARIANTS ..."
@@ -114,8 +115,8 @@ gatk --java-options "-Xms4G -Xmx4G -XX:ParallelGCThreads=2" VariantFiltration \
     -filter "QD < 2.0" --filter-name "QD2" \
     -filter "QUAL < 30.0" --filter-name "QUAL30" \
     -filter "FS > 200.0" --filter-name "FS200" \
-    -filter "ReadPosRankSum < -20.0" --filter-name "ReadPosRankSum-20" \ 
-    -O ${FILTERED_INDEL_VCF}
+    -filter "ReadPosRankSum < -20.0" --filter-name "ReadPosRankSum-20" \
+    -O ${FILTERED_INDEL_VCF} >> ${LOGFILE} 2>&1
 
 e# Print footnote
 TIMESTAMP=`date "+%Y-%m-%d %H:%M:%S"`
